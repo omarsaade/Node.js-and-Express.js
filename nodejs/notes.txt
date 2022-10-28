@@ -1,0 +1,217 @@
+
+node bel git bya3mul run
+global hye nafsa window bel chrome
+process hye nafsa document bel chrome
+
+import .. from ..
+
+bel node : require()
+
+npm install multer   new:w sar bye7faz la 7alo
+bel dependencies
+
+npm install multer --save     old , mishen yehfaz bel depe
+.
+kif t5alii yehfazo bel devDependencies?  
+npm install multer --save    byehfazo bel depend
+npm install multer --save-dev byehfazo bel devdep
+
+yaane tene wahde, hye shi m3ala2 bel developement
+mesh bel production
+====================
+npm install express
+
+//he e5tisar lali tahet
+npm install -g express
+
+npm install --global express
+huwe el sah ano enta ta3mul install lal osas local
+
+npm init betnazel el package.json
+==================
+fine eje ana 3al dependecies w gayer fiha 3a kayfe
+yaane fi el3ab bel description iza bade wbel author
+
+shagle tenye:
+dependencies :  bikun fia el osas li enta mnazala
+w hye enta btesta3mel bel production
+
+
+amma
+devDependencies: fik t2ul fia el osas taba3 el developement
+
+--- fik tzid bel scripts shi m3ayan w mujarad ma tektbo
+bya3mul run bi hal mahal
+example:
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node app.js"
+  },
+
+
+?? hol kif btshaglon
+bt2elo   npm run test
+or       npm run start 
+  he el tenye bestahgel el node
+================================
+hala2 enta bta3ti el project fio el package.json
+bi ruh el bani 2adam bya3mul npm install lal ossa
+..ok so hala2 shu bisir?bass tshagel heda el amer bi ruh huwe 3al package.json w bi nazel
+el packages la halo.
+
+
+package.lock.json
+byenketeb fi el modules tree tabe3te
+yaane shu 3amalet bel dependencies...3melet install 
+la shu , 3melet unistall la shu...hik. gayaret el version taba3 shu..
+
+===================
+so hen 3 types of modules
+built in modules
+third party modules
+custom modules
+================================
+how we import and export in node js?
+there is two type 
+the old one and the new one
+module.exports = multer;
+
+how to import ?
+
+ const multer = require("multer");
+================================================
+==============================
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "my desc",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+
+=====================================
+how to exports ?
+
+module.exports = {
+
+}
+
+or
+
+// iza habeb dif property bhet dot
+module.exports.PI = 3.14;
+
+w fina nektob hik
+exports.PI = 3.14;
+==================================================================================
+
+                  la ta3mul run
+node app.js     
+
+or
+
+npm start
+
+
+or npm test
+bi raje3lak el sater
+
+hik hye bel node....
+
+
+======================================================================
+// /* console.log("Hello from app.js");
+//argument vector
+console.log(process.argv);
+let n1 = +process.argv[2];
+let n2 = +process.argv[3];
+ console.log(n1 + n2);
+
+
+// this is how we import anything exported from my-module.js
+// this is how important something from our custom module
+
+
+const name = require("./modules/my-module");
+console.log(name);
+// cz its a property inside my object
+console.log(name.PI);
+
+This is how we import a third-party module
+ we add the name of the package in the braces
+const multer = require("multer")
+
+================================================
+Express byesta5dem mabada2 el http
+yaane huwe mabni 3al file http li bel modules 
+w huwe yaabe bi sahhel el umur
+
+========================================
+3ana package mheme esma nodemon
+ ktir mheme bel reload taba3 el server
+ npm install -g nodemon
+
+baad ma tanzela kif badak tshagela?
+bt2elo yeha w ma3 esem el malaf taba3ak
+
+nodemon app.js
+
+===============================
+
+//import lal module
+const http = require("http");
+
+// to create a server
+// create server : btjeble el server taba3e
+// hye bte5od jaweta callback function
+// bteshtegl kell ma chrome yetlob shagle men el server taba3e
+// bte5od req w btraje3 response
+// req and res are objects
+// b3atet req and resp
+const server = http.createServer((req, res) => {
+  // there is 2 imp property in the request
+  //   req.url
+
+  //    fina na3mul shagle
+  //   console.log(req.method);
+  if (req.url === "/") res.write("Hello from Home");
+  else if (req.url === "/about") res.write("Hello from about 2");
+  res.end();
+  //   console.log(req.url);
+  // shu ya3mul lama yeji talab?
+  //yred bi kelmet hello
+  /*
+  res.setHeader("Content-Type", "text/html");
+  // 7alet el talab taba3e
+  // he kif enta betheta ..btle2ia bel network
+  res.statusCode = 200;
+  res.write("Hello\n");
+  res.write("Welcome To My Server");
+  // b3atele el rad ana khalaset
+  res.end();
+  */
+});
+
+//kif bshagel el server hala2?
+//port : 3000
+server.listen(3000, () => {
+  console.log("server is listening on port 3000");
+});
+
+// how to run the server ?  node app.js
+// and it will run deyman
+
+=================================
+
+Apache server : make thread for each request
+
+Node JS : Handle all requests in the same thread 
+Asynchronously Using Event Loop
+
+
