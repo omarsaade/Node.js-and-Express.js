@@ -23,7 +23,7 @@ asynchronous tameman ? 100 bel 100 ?
   shagale fia hye multiple thread
   metel shu ?
 
-node js hye runtime enviroment mabni 3al v8
+node js hye runtime environment mabni 3al v8
 
 NodeJs hye 3ibara 3an:
 
@@ -31,6 +31,8 @@ V8
 
 
 library called " Libuv 
+code tab3 libuv maktub bi c++
+
 
 
 */
