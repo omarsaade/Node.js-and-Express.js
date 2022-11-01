@@ -22,6 +22,7 @@ const app = express();
 // huwe 3ibara 3an function btsir ma3 kell request byejile
 app.use((req, res, next) => {
   // hye e5tisar la res.write w res.end bi zet el wa2et
+  // yaane 2 bi 1
   res.send("<h1>Hello</h1>");
 });
 
