@@ -1,15 +1,24 @@
-// application middleware : app level
-const express = require("express");
+// with node js
 
-const aboutRouter = require("./about-router");
-const app = express();
+const http = require("http");
+// const body = require("body");
+const body = require("body/form");
 
-app.get("/", (req, res, next) => {
-  res.send("hello from home");
-});
-
-app.use("/about", aboutRouter);
-
-app.listen(3000, () => {
-  console.log("server Listen on port 3000");
-});
+http
+  .createServer((req, res) => {
+    res.setHeader("Content-Type", "text/html");
+    if (req.method === "GET") {
+      res.write('<form action="/" method="POST">');
+      res.write('<input name="username"/>');
+      res.write('<input name="age" type="number" />');
+      res.write('<input type="submit"/>');
+      res.write("</form>");
+      res.end();
+    } else if (req.method === "POST") {
+      body(req, (err, body) => {
+        console.log(body);
+        res.end("done");
+      });
+    }
+  })
+  .listen(3000, () => console.log("server listen on port 3000"));

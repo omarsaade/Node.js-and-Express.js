@@ -507,5 +507,84 @@ Node JS #8  Send POST Request.
 
 
 
+// chunk : joze2 men el data li2an el data bel post
+// btenbe3at 3ala ajze2...kell jeze2 la halo.
+
+/*
+yaane el server byeb3at el data ka chunk..shway shway
+hik byet3amal el server ma3 el browser li beyb3at el talab
+baad ma kell el data btenbe3et btetjam3 bin shagele esma
+Buffer  aw arraybuffer : hye el mahal li btejama3 fia el array
+taba3te.
+buffer: hye el array li btetjama3 fia el data tab3te.
+ hala2 kif fina n3aref el server ano fia data jeyetlo
+ men el client ma3 el request?
+
+ 1-http module (node js)
+ 2-express ( node js framework)
+
+*/
+// with node js
+
+const http = require("http");
+
+http
+  .createServer((req, res) => {
+    res.setHeader("Content-Type", "text/html");
+    if (req.method === "GET") {
+      res.write('<form action="/" method="POST">');
+      res.write('<input name="username"/>');
+      res.write('<input name="age"/>');
+      res.write('<input type="submit"/>');
+      res.write("</form>");
+      res.end();
+    } else if (req.method === "POST") {
+      let body = [];
+      req.on("data", (chunk) => {
+        body.push(chunk);
+      });
+      req.on("end", () => {
+        // console.log(body);
+        body = Buffer.concat(body).toString();
+        console.log(body);
+        res.end("done");
+      });
+    }
+  })
+  .listen(3000, () => console.log("server listen on port 3000"));
+
+/*
+
+
+
+               Now using body
+
+
+
+// with node js
+
+const http = require("http");
+// const body = require("body");
+const body = require("body/form");
+
+http
+  .createServer((req, res) => {
+    res.setHeader("Content-Type", "text/html");
+    if (req.method === "GET") {
+      res.write('<form action="/" method="POST">');
+      res.write('<input name="username"/>');
+      res.write('<input name="age" type="number" />');
+      res.write('<input type="submit"/>');
+      res.write("</form>");
+      res.end();
+    } else if (req.method === "POST") {
+      body(req, (err, body) => {
+        console.log(body);
+        res.end("done");
+      });
+    }
+  })
+  .listen(3000, () => console.log("server listen on port 3000"));
+
 
 
