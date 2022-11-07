@@ -387,3 +387,54 @@ app.listen(3000, () => {
   console.log("server Listen on board 3000");
 });
 =============================
+
+//import module
+const express = require("express");
+//
+const app = express();
+
+//middleware
+// huwe 3ibara 3an function btsir ma3 kell request byejile
+app.use((req, res, next) => {
+  // hye e5tisar la res.write w res.end bi zet el wa2et
+  // yaane 2 bi 1
+  // if (req.url === "/") res.end("hello from home");
+  // else if (req.url === "/about") res.end("hello from about");
+  // else res.end("404 not found");
+  // res.send("<h1>Hello</h1>");
+});
+
+app.listen(3000, () => {
+  console.log("server Listen on port 3000");
+});
+
+
+======================================
+
+*/
+//import module
+const express = require("express");
+//
+const app = express();
+//all btshuf iza el masar bi tabe2
+app.all("/", (req, res, next) => {
+  res.send("hello from home");
+});
+app.all("/about", (req, res, next) => {
+  res.send("hello from about");
+});
+// use btshuf el masar byebda bi hal shi
+app.use((req, res, next) => {
+  res.send("404 not found");
+});
+
+app.listen(3000, () => {
+  console.log("server Listen on port 3000");
+});
+
+/*
+all or use ?
+iza mabadk thaded link ..sta5dem use
+ger hik esta5dem all
+all yaane all request methods  GET , POST , PUT , DELETE
+*/
