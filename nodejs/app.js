@@ -1,3 +1,4 @@
+// application middleware : app level
 const express = require("express");
 
 const aboutRouter = require("./about-router");

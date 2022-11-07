@@ -424,6 +424,7 @@ app.all("/about", (req, res, next) => {
   res.send("hello from about");
 });
 // use btshuf el masar byebda bi hal shi
+// byebda bi "/" ?
 app.use((req, res, next) => {
   res.send("404 not found");
 });
@@ -438,3 +439,73 @@ iza mabadk thaded link ..sta5dem use
 ger hik esta5dem all
 all yaane all request methods  GET , POST , PUT , DELETE
 */
+
+=====================================
+
+
+
+
+
+
+
+
+
+dares 7 - video 7
+
+app.js
+
+
+// application middleware : app level
+const express = require("express");
+
+const aboutRouter = require("./about-router");
+const app = express();
+
+app.get("/", (req, res, next) => {
+  res.send("hello from home");
+});
+
+app.use("/about", aboutRouter);
+
+app.listen(3000, () => {
+  console.log("server Listen on port 3000");
+});
+
+
+==============================
+
+about-router.js
+
+// router middleware : router level
+const express = require("express");
+
+const router = express.Router();
+
+router.get("/", (req, res, next) => {
+  res.send("hello from about");
+});
+
+router.get("/me", (req, res, next) => {
+  res.send("hello from me");
+});
+
+router.get("/company", (req, res, next) => {
+  res.send("hello from company");
+});
+
+module.exports = router;
+
+// or
+
+// exports.router = router
+
+==============================================================
+===========================================================
+=============================================================
+
+Node JS #8  Send POST Request.
+
+
+
+
+
