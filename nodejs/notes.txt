@@ -561,7 +561,7 @@ http
 
 
 
-// with node js
+// with node js  // http module
 
 const http = require("http");
 // const body = require("body");
@@ -585,6 +585,8 @@ http
     }
   })
   .listen(3000, () => console.log("server listen on port 3000"));
+
+                         Now with Express
 
 
 
