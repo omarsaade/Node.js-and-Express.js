@@ -22,7 +22,9 @@ app.get("/", (req, res, next) => {
 });
 
 app.post("/", bodyParserMW, (req, res, next) => {
-  console.log(req.body.username);
+  // console.log(req.body.username);
+  console.log(req.body);
+
   res.send("done");
 });
 

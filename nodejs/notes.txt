@@ -513,8 +513,8 @@ Node JS #8  Send POST Request.
 /*
 yaane el server byeb3at el data ka chunk..shway shway
 hik byet3amal el server ma3 el browser li beyb3at el talab
-baad ma kell el data btenbe3et btetjam3 bin shagele esma
-Buffer  aw arraybuffer : hye el mahal li btejama3 fia el array
+baad ma kell el data btenbe3et btetjam3 bi shagele esma
+Buffer aw arraybuffer : hye el mahal li btejama3 fia el array
 taba3te.
 buffer: hye el array li btetjama3 fia el data tab3te.
  hala2 kif fina n3aref el server ano fia data jeyetlo
@@ -563,12 +563,18 @@ http
 
 // with node js  // http module
 
+//hon module body bas mosta5dam ma3 el http
+// ger mosta5dam ma3 el express
+// npm install --save body
+
+
 const http = require("http");
+
 // const body = require("body");
+
 const body = require("body/form");
 
-http
-  .createServer((req, res) => {
+http.createServer((req, res) => {
     res.setHeader("Content-Type", "text/html");
     if (req.method === "GET") {
       res.write('<form action="/" method="POST">');
