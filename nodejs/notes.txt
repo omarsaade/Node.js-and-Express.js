@@ -699,3 +699,7 @@ index.html
 
 ======================================================
 
+3ana kaza template engine
+1-ejs embeded javascript
+2-handlebars
+3-pug js

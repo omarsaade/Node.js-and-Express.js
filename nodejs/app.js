@@ -12,11 +12,14 @@ app.set("views", "views"); // default 'views'
 app.use(express.static(path.join(__dirname, "statics")));
 
 app.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("index", {
+    pageTitle: "Home",
+  });
 });
 
 app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
   res.render("index", {
+    pageTitle: "Home",
     name: req.body.name,
   });
 });
