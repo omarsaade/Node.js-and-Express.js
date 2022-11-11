@@ -1,21 +1,21 @@
 // router middleware : router level
-const express = require("express");
+// const express = require("express");
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.send("hello from about");
-});
+// router.get("/", (req, res, next) => {
+//   res.send("hello from about");
+// });
 
-router.get("/me", (req, res, next) => {
-  res.send("hello from me");
-});
+// router.get("/me", (req, res, next) => {
+//   res.send("hello from me");
+// });
 
-router.get("/company", (req, res, next) => {
-  res.send("hello from company");
-});
+// router.get("/company", (req, res, next) => {
+//   res.send("hello from company");
+// });
 
-module.exports = router;
+// module.exports = router;
 
 // or
 

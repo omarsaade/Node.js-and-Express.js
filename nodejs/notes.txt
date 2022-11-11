@@ -700,6 +700,188 @@ index.html
 ======================================================
 
 3ana kaza template engine
-1-ejs embeded javascript
+1-EJS embeded javascript
 2-handlebars
 3-pug js
+
+
+So firstly we install EJS
+npm install --save ejs
+
+//mishen EJS
+app.set
+
+video 10
+app.js code
+
+// with express
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+// const ejs = require("ejs");
+const app = express();
+
+app.set("view engine", "ejs");
+//men 2elo wen mahal folder li fio el malaf
+app.set("views", "views"); // default 'views'
+
+app.use(express.static(path.join(__dirname, "statics")));
+
+app.get("/", (req, res, next) => {
+  //mishen eb3at malaf ejs(template engine)
+  //         index.ejs
+  res.render("index", {
+    pageTitle: "Homo",
+  });
+});
+
+//bodypaser mohemeta tjiba el data li hye juwa el res body
+app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
+  // he el render muhemta tet3amal ma3 el template engine..w nehna 3amlin tnen variable
+  //dynamic...el awle hye pageTitle wel tenye hye name
+  //w fut shuf bel ejs kif 3am ne3rdon.
+  res.render("index", {
+    pageTitle: "Home",
+    name: req.body.name,
+  });
+});
+app.listen(3000, () => console.log("server listen on port 3000"));
+
+
+head.ejs
+
+<head>
+    <meta charset="UTF-8">
+    <title><%= pageTitle%></title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+
+index.ejs
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./parts/head') %>
+<body>
+<form action="/" method="POST">
+    <input type="text" name="name">
+    <input type="submit" value="Greet">
+</form>
+
+
+ <% if (typeof name !== 'undefined') { %>
+    <h1>
+        <%= name %>
+    </h1>
+<% } else { %>   
+
+    <h1>Enter your name</h1>
+
+<%  } %>
+
+
+<%#
+    comment
+%>
+</body>
+</html>
+========================================================
+
+Routing Parameters  - video 11
+
+  3ana naw3en [parameters]
+  Parameter 3adye     /mom  aw   
+  dynamic parameters  /:sami
+
+
+
+  query parameters or optional
+  query: yaane talab aw este3lam  
+   localhost:3000?name=mostafa&family=sams
+
+
+
+
+
+
+   // with express
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+// const ejs = require("ejs");
+const app = express();
+
+app.set("view engine", "ejs");
+//men 2elo wen mahal folder li fio el malaf
+app.set("views", "views"); // default 'views'
+
+app.use(express.static(path.join(__dirname, "statics")));
+
+app.get("/", (req, res, next) => {
+  //mishen eb3at malaf ejs(template engine)
+  //         index.ejs
+  //localhost:3000?name=mostafa
+  console.log(req.query); // {name:"mosatafa"}  he esma query parameter
+  res.render("index", {
+    pageTitle: "Home",
+  });
+});
+//       routing parameters
+app.get("/about", (req, res, next) => {
+  console.log("about");
+});
+
+//huwe el routing byemhse men fo2 la tahet
+//dynamic parameter
+app.get("/:name", (req, res, next) => {
+  //mishen eb3at malaf ejs(template engine)
+  //         index.ejs
+  res.render("index", {
+    pageTitle: "Homo",
+    name: req.params.name,
+  });
+});
+
+app.listen(3000, () => console.log("server listen on port 3000"));
+
+
+===========================================================
+
+
+video 12
+
+Redirect method
+
+// with express
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const app = express();
+
+app.set("view engine", "ejs");
+app.set("views", "views");
+
+app.use(express.static(path.join(__dirname, "statics")));
+
+app.get("/", (req, res, next) => {
+  console.log(req.query);
+  res.render("index", {
+    pageTitle: "Home",
+  });
+});
+//       routing parameters
+app.get("/to-home", (req, res, next) => {
+  //           ../   hayde yaane rje3 la wara
+  res.redirect(301, "/");
+});
+
+app.listen(3000, () => console.log("server listen on port 3000"));
+
+
+============================================================
+
+
+ 
