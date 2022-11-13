@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 //connect database and node
 const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectId;
 const app = express();
 
 app.set("view engine", "ejs");
@@ -15,12 +16,18 @@ app.get("/", (req, res, next) => {
     const db = client.db();
 
     db.collection("users")
-      .find()
-      .toArray()
-      .then((users) => {
-        console.log(users);
+      //filter
+      .findOne()
+      // {
+      // age: 20,
+      //   _id: new ObjectId("636e99b956e396a4bc67772c"),
+      // }
+      // .toArray()
+
+      .then((user) => {
+        console.log(user);
         res.render("index", {
-          users: users,
+          user: user,
         });
       });
   });
