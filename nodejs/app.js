@@ -18,8 +18,7 @@ app.get("/", (req, res, next) => {
     db.collection("users")
       //filter
       .findOne()
-      //  or   .find()
-      // .findOne(
+      // .find(
       // {
       // age: 20,
       //  _id: new ObjectId("636e99b956e396a4bc67772c"),
@@ -41,14 +40,22 @@ app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
     const db = client.db();
 
     db.collection("users")
-      .insertOne({
-        name: req.body.name,
-        age: +req.body.age,
-      })
+      .updateOne(
+        {
+          name: req.body.name,
+        },
+        {
+          //mahjuze bel mongo
+          $set: {
+            age: +req.body.age,
+          },
+        }
+      )
       .then((result) => {
-        // console.log(result);
+        console.log(result);
         res.redirect("/");
       });
+    // client.close();
   });
 });
 
