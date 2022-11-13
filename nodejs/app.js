@@ -3,7 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 //connect database and node
 const MongoClient = require("mongodb").MongoClient;
-// const ObjectId = require("mongodb").ObjectId;
+const ObjectId = require("mongodb").ObjectId;
 const app = express();
 
 app.set("view engine", "ejs");
@@ -16,16 +16,39 @@ app.get("/", (req, res, next) => {
     const db = client.db();
 
     db.collection("users")
-      //filter
-      .findOne()
-      // .find(
-      // {
-      // age: 20,
-      //  _id: new ObjectId("636e99b956e396a4bc67772c"),
-      // }
-      // )
-      // .toArray()
-
+      .find({})
+      // .sort({})
+      // .sort([])
+      // .limit(2)
+      // .skip(2)
+      /*
+      //fi tari2ten na3mul filter fion
+      .find(
+        {},
+        {
+          // age: {
+          //   //gte    greater than equal
+          //   //ne     not equal
+          //   //in     fi
+          //   // $ne: 333,
+          //   //$nin :[18,19,20]
+          //   $in: [18, 19, 20],
+          // },
+          // $or:[{}]
+          // limit: 2,
+          // skip: 2,
+          // sort: {
+          //   age: -1,
+          //   name: 1,
+          // },
+          sort: [
+            ["age", -1],
+            ["name", 1],
+          ],
+        }
+      )
+      */
+      .toArray()
       .then((user) => {
         console.log(user);
         res.render("index", {
@@ -40,22 +63,14 @@ app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
     const db = client.db();
 
     db.collection("users")
-      .updateOne(
-        {
-          name: req.body.name,
-        },
-        {
-          //mahjuze bel mongo
-          $set: {
-            age: +req.body.age,
-          },
-        }
-      )
+      .insertOne({
+        name: req.body.name,
+        age: +req.body.age,
+      })
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         res.redirect("/");
       });
-    // client.close();
   });
 });
 
