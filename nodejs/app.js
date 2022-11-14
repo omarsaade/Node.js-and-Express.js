@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+//import mongoose
 const mongoose = require("mongoose");
 const app = express();
 
@@ -21,16 +22,26 @@ app.set("views", "views");
 app.use(express.static(path.join(__dirname, "statics")));
 
 app.get("/", (req, res, next) => {
-  res.render("index", {
-    users: [],
+  mongoose.connect(DB_URL, { useNewUrlParser: true }, (err) => {
+    //   Read
+    User.find((err, users) => {
+      mongoose.disconnect();
+      res.render("index", {
+        users: users,
+      });
+    });
   });
 });
 
 app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
   mongoose.connect(DB_URL, { useNewUrlParser: true }, (err) => {
-    // mongoose.connect(DB_URL, (err) => {
-    console.log("connected to database");
-    mongoose.disconnect();
+    User.findOne({ name: req.body.name }, (err, user) => {
+      user.age = req.body.age;
+      user.save((err) => {
+        mongoose.disconnect();
+        res.redirect("/");
+      });
+    });
   });
 });
 
