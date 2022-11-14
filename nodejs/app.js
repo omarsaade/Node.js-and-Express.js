@@ -1,10 +1,18 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-//connect database and node
-const MongoClient = require("mongodb").MongoClient;
-const ObjectId = require("mongodb").ObjectId;
+const mongoose = require("mongoose");
 const app = express();
+
+const DB_URL = "mongodb://localhost:27017/appDB";
+
+let userSchema = mongoose.Schema({
+  name: String,
+  age: Number,
+});
+
+//Model
+let User = mongoose.model("user", userSchema); //collection users baad ma t7awela
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -12,35 +20,16 @@ app.set("views", "views");
 app.use(express.static(path.join(__dirname, "statics")));
 
 app.get("/", (req, res, next) => {
-  MongoClient.connect("mongodb://localhost:27017/firstDB", (err, client) => {
-    const db = client.db();
-
-    db.collection("users")
-      .find({})
-      .sort()
-      .toArray()
-      .then((user) => {
-        console.log(user);
-        res.render("index", {
-          user: user,
-        });
-      });
+  res.render("index", {
+    users: [],
   });
 });
 
 app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
-  MongoClient.connect("mongodb://localhost:27017/firstDB", (err, client) => {
-    const db = client.db();
-
-    db.collection("users")
-      .insertOne({
-        name: req.body.name,
-        age: +req.body.age,
-      })
-      .then((result) => {
-        // console.log(result);
-        res.redirect("/");
-      });
+  mongoose.connect(DB_URL, { useNewUrlParser: true }, (err) => {
+    // mongoose.connect(DB_URL, (err) => {
+    console.log("connected to database");
+    mongoose.disconnect();
   });
 });
 
