@@ -6,12 +6,13 @@ const app = express();
 
 const DB_URL = "mongodb://localhost:27017/appDB";
 
+//  ODM
 let userSchema = mongoose.Schema({
   name: String,
   age: Number,
 });
 
-//Model
+//Model  ODM
 let User = mongoose.model("user", userSchema); //collection users baad ma t7awela
 
 app.set("view engine", "ejs");

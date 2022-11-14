@@ -39,3 +39,13 @@ app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
 });
 
 app.listen(3000, () => console.log("server listen on port 3000"));
+
+
+----------------------------------------
+
+mongodb btetkawan men collections
+  wkell collection btetkawan men majmu3a
+  men documents
+
+ana behfaz el data taba3e bi document w bheta bi collection 
+m3ayane
