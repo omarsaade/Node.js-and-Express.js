@@ -17,38 +17,7 @@ app.get("/", (req, res, next) => {
 
     db.collection("users")
       .find({})
-      // .sort({})
-      // .sort([])
-      // .limit(2)
-      // .skip(2)
-      /*
-      
-      //fi tari2ten na3mul filter fion
-      .find(
-        {},
-        {
-          // age: {
-          //   //gte    greater than equal
-          //   //ne     not equal
-          //   //in     fi
-          //   // $ne: 333,
-          //   //$nin :[18,19,20]
-          //   $in: [18, 19, 20],
-          // },
-          // $or:[{}]
-          // limit: 2,
-          // skip: 2,
-          // sort: {
-          //   age: -1,
-          //   name: 1,
-          // },
-          sort: [
-            ["age", -1],
-            ["name", 1],
-          ],
-        }
-      )
-      */
+      .sort()
       .toArray()
       .then((user) => {
         console.log(user);
