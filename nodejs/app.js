@@ -35,12 +35,9 @@ app.get("/", (req, res, next) => {
 
 app.post("/", bodyParser.urlencoded({ extended: true }), (req, res, next) => {
   mongoose.connect(DB_URL, { useNewUrlParser: true }, (err) => {
-    User.findOne({ name: req.body.name }, (err, user) => {
-      user.age = req.body.age;
-      user.save((err) => {
-        mongoose.disconnect();
-        res.redirect("/");
-      });
+    User.deleteOne({ name: req.body.name }, (err, result) => {
+      mongoose.disconnect();
+      res.redirect("/");
     });
   });
 });
